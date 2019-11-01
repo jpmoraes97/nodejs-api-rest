@@ -1,0 +1,38 @@
+{
+  "name": "node-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "jest",
+    "lint": "eslint src/** test/** --fix",
+    "secure-mode": "jest --watchAll --verbose=true"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^6.6.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "jest": "23.6.0",
+    "supertest": "3.3.0"
+  },
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "1.18.3",
+    "consign": "0.1.6",
+    "cors": "^2.8.5",
+    "express": "4.16.4",
+    "jwt-simple": "0.5.5",
+<<<<<<< HEAD
+    "knex": "0.15.2",
+=======
+    "knex": "0.19.5",
+>>>>>>> 654401dcf335283f5d56672b3aa3ded045809c68
+    "passport": "0.4.0",
+    "passport-jwt": "4.0.0",
+    "pg": "7.7.1"
+  }
+}
