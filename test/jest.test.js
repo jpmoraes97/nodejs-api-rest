@@ -14,13 +14,10 @@ test('Devo saber trabalhar com objetos', () => {
 
     const obj2 = {name: 'John Node', mail: 'johnnode@mail.com'};
     //expect(obj).toBe(obj2);
-<<<<<<< HEAD
         //expect(obj).toBe(obj2);
         //expect(obj).toBe(obj2);
 
-=======
->>>>>>> 654401dcf335283f5d56672b3aa3ded045809c68
-  
+
     expect(obj).toBe(obj);
     expect(obj.name).toBe('John Node');
 });
