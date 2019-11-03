@@ -75,6 +75,29 @@ test('Transacoes de saida devem ser negativas', () => {
     });
 });
 
+test('Nao deve inserir uma transacao sem descricao', () => {
+    return request(app).post(ROUTE)
+    .set('Authorization', `Bearer ${user.token}`)
+    .send({date: new Date(), ammount: 230, type: 'I', acc_id: accUser.id})
+    .then((res) => {
+        expect(res.status).toBe(400);
+        expect(res.body.error).toBe('Descricao e um atributo obrigatorio');
+    });
+});
+
+test('Nao deve inserir uma transacao sem valor', () => {
+    return request(app).post(ROUTE)
+    .set('Authorization', `Bearer ${user.token}`)
+    .send({description: 'Desc', date: new Date(), type: 'I', acc_id: accUser.id})
+    .then((res) => {
+        expect(res.status).toBe(400);
+        expect(res.body.error).toBe('Valor e um atributo obrigatorio');
+    });
+});
+
+
+
+
 test('Deve retornar uma transação por ID', () => {
     return app.db('transactions').insert(
         {description: 'Return Transaction', date: new Date(), ammount: 230, type: 'I', acc_id: accUser.id},['id'])
@@ -121,4 +144,14 @@ test('Nao deve remover uma transacao de outro user', () => {
         }));
 });
 
+test('Nao deve remover uma conta com transacao associada', () => {
+    return app.db('transactions').insert(
+        {description: 'Delete account with transaction', date: new Date(), ammount: 230, type: 'I', acc_id: accUser.id},['id'])
+        .then(() => request(app).delete(`/v1/accounts/${accUser.id}`)
+        .set('Authorization', `Bearer ${user.token}`)
+        .then(result => {
+            expect(result.status).toBe(400);
+            expect(result.body.error).toBe('Essa conta possui transacoes associadas');
+        }));
+});
 

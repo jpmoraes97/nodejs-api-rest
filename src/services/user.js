@@ -27,5 +27,9 @@ module.exports = (app) => {
       return app.db('users').where(filter).first();
     };
 
-    return {findAll, save, find};
+    const remove = (id) => {
+      return app.db('users').where({id}).del();
+    }
+
+    return {findAll, save, find, remove};
 }

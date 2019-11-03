@@ -15,5 +15,10 @@ module.exports = (app) => {
         res.status(201).json(result[0]);
     });
 
+    router.delete('/:id', (req, res) => {
+        app.services.user.remove(req.params.id)
+        .then(() => res.status(204).send());
+    })
+
     return router;
 }
